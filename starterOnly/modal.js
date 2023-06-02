@@ -7,11 +7,11 @@ function editNav() {
   //Si la propriété className de cet élément 
   //correspond en valeur et en nature à topnav
   if (x.className === "topnav") {
-  
-  //alors ajouter responsive au nom de la classe
+
+    //alors ajouter responsive au nom de la classe
     x.className += " responsive";
 
-  //sinon, 
+    //sinon, 
   } else {
     x.className = "topnav";
   }
@@ -24,17 +24,11 @@ function editNav() {
 // la div qui contient le formulaire d'inscription
 const modalbg = document.querySelector(".bground");
 
-//Création d'une constante formData
-// correspond à chaque champs de formulaire
-const formData = document.querySelectorAll(".formData");
+
 
 //Création d'une constante modalBtn
 //correspond au bouton je m'inscris
 const modalBtn = document.querySelectorAll(".modal-btn");
-
-//Création d'une constante closeButton
-//correspond à la croix dessinée dans le css
-const closeModalBtn = document.querySelectorAll(".close");
 
 //Ajout de de la méthode forEach sur le bouton je m'inscris
 //Pour chaque click sur le btn, on lance la fonction launchModal
@@ -47,6 +41,9 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
+//Création d'une constante closeButton
+//correspond à la croix dessinée dans le css
+const closeModalBtn = document.querySelectorAll(".close");
 
 //Ajout de la méthode forEach sur l'élément close
 //Pour chaque click sur le close, on lance la fonction closeModal
@@ -55,8 +52,8 @@ closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModa
 
 //Fonction closeModal
 //display du div contenant le form à 
-function closeModal(){
+function closeModal() {
   modalbg.style.display = "absolute";
-  modalbg.style.width= 0;
-  modalbg.style.width= 0;
-}
+  modalbg.style.width = 0;
+  modalbg.style.width = 0;
+} 
