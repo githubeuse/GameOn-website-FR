@@ -61,7 +61,7 @@ function closeModal() {
 
 
 
-function validate(event) {
+function validate() {
   let form = document.forms.reserve;
   let first = form.elements.first.value;
   let last = form.elements.last.value;
@@ -136,6 +136,9 @@ function validate(event) {
     } else {
       document.getElementById("conditions-error-message").innerHTML = "";
     }
+
+
+    alert("Merci ! Votre réservation a été reçue.");
 
 
   }
