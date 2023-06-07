@@ -200,6 +200,12 @@ input {
   border: 0.8px solid #ccc;
   outline: none;
 }
+
+.error-message{
+  color: red;
+  font-size: 0.5em;
+}
+
 .text-control {
   margin: 0;
   padding: 8px;

@@ -53,9 +53,7 @@ closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModa
 //Fonction closeModal
 //display du div contenant le form à 
 function closeModal() {
-  modalbg.style.display = "absolute";
-  modalbg.style.width = 0;
-  modalbg.style.width = 0;
+  modalbg.style.display = "none";
 }
 
 
@@ -81,7 +79,7 @@ function validate() {
 
     // 2/ Vérification de la longueur minimale du nom entré de l'input last / prénom
     if (last.length < 2) {
-      document.getElementById("last-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom";
+      document.getElementById("last-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
       return false;
     } else {
       document.getElementById("last-error-message").innerHTML = "";
@@ -90,11 +88,10 @@ function validate() {
     // 3/ Vérification de l'email 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      document.getElementById("email-error-message").innerHTML = "Veuillez entrer un email valide";
+      document.getElementById("email-error-message").innerHTML = "Veuillez entrer un email valide.";
       return false;
     } else {
       document.getElementById("email-error-message").innerHTML = "";
-
     }
 
     // 4/ Vérification du champs birthdate 
@@ -138,7 +135,8 @@ function validate() {
     }
 
 
-    alert("Merci ! Votre réservation a été reçue.");
+//    alert("Merci ! Votre réservation a été reçue.");
+    document.querySelector(".modal-body").innerHTML = "Merci ! Votre réservation a été reçue.";
 
 
   }
