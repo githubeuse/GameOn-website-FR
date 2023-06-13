@@ -51,7 +51,7 @@ const closeModalBtn = document.querySelectorAll(".close");
 closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModal));
 
 let form = document.forms.reserve;
-let modalBody = document.querySelector("modal-body");
+let modalBody = document.querySelector(".modal-body");
 
 //Fonction closeModal
 //display du div contenant le form à 
