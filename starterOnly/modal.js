@@ -57,7 +57,7 @@ let modalBody = document.querySelector(".modal-body");
 //display du div contenant le form à 
 function closeModal() {
   modalbg.style.display = "none";
-  modalBody.appendChild(".formData");
+  modalBody.appendChild("reserve");
 }
 
 function validate(event) {
