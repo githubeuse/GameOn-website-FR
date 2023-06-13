@@ -50,17 +50,17 @@ const closeModalBtn = document.querySelectorAll(".close");
 // close modal event
 closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModal));
 
+let form = document.forms.reserve;
+let modalBody = document.querySelector("modal-body");
+
 //Fonction closeModal
 //display du div contenant le form à 
 function closeModal() {
   modalbg.style.display = "none";
+  modalBody.appendChild(".formData");
 }
 
-
-
-
-function validate() {
-  let form = document.forms.reserve;
+function validate(event) {
   let first = form.elements.first.value;
   let last = form.elements.last.value;
   let email = form.elements.email.value;
@@ -77,66 +77,68 @@ function validate() {
     document.getElementById("first-error-message").innerHTML = "";
   }
 
-    // 2/ Vérification de la longueur minimale du nom entré de l'input last / prénom
-    if (last.length < 2) {
-      document.getElementById("last-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-      return false;
-    } else {
-      document.getElementById("last-error-message").innerHTML = "";
-    }
+  // 2/ Vérification de la longueur minimale du nom entré de l'input last / prénom
+  if (last.length < 2) {
+    document.getElementById("last-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+    return false;
+  } else {
+    document.getElementById("last-error-message").innerHTML = "";
+  }
 
-    // 3/ Vérification de l'email 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      document.getElementById("email-error-message").innerHTML = "Veuillez entrer un email valide.";
-      return false;
-    } else {
-      document.getElementById("email-error-message").innerHTML = "";
-    }
+  // 3/ Vérification de l'email 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    document.getElementById("email-error-message").innerHTML = "Veuillez entrer un email valide.";
+    return false;
+  } else {
+    document.getElementById("email-error-message").innerHTML = "";
+  }
 
-    // 4/ Vérification du champs birthdate 
-    if (isNaN(Date.parse(birthdate))) {
-      document.getElementById("birthdate-error-message").innerHTML = "Vous devez entrer votre date de naissance.";
-      return false;
-    } else {
-      document.getElementById("birthdate-error-message").innerHTML = "";
-    }
+  // 4/ Vérification du champs birthdate 
+  if (isNaN(Date.parse(birthdate))) {
+    document.getElementById("birthdate-error-message").innerHTML = "Vous devez entrer votre date de naissance.";
+    return false;
+  } else {
+    document.getElementById("birthdate-error-message").innerHTML = "";
+  }
 
-    // 5/ Vérification de la quantité de tournois joués
-    if (quantity === '') {
-      document.getElementById("quantity-error-message").innerHTML = "Vous devez saisir une valeur numérique.";
-      return false;
-    } else {
-      document.getElementById("quantity-error-message").innerHTML = "";
-
-    }
-
-    // 6/ Vérification du nombre de case cochée minimum pour la location
-    let locationChecked = false;
-    for (let i = 0; i < location.length; i++) {
-      if (location[i].checked) {
-        locationChecked = true;
-        break;
-      }
-    }
-    if (!locationChecked) {
-      document.getElementById("location-error-message").innerHTML = "Vous devez choisir une option.";
-      return false;
-    } else {
-      document.getElementById("location-error-message").innerHTML = "";
-    }
-
-    // 7/ Vérification que la case conditions est checkée
-    if (!conditions) {
-      document.getElementById("conditions-error-message").innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
-      return false;
-    } else {
-      document.getElementById("conditions-error-message").innerHTML = "";
-    }
-
-
-//    alert("Merci ! Votre réservation a été reçue.");
-    document.querySelector(".modal-body").innerHTML = "Merci ! Votre réservation a été reçue.";
-
+  // 5/ Vérification de la quantité de tournois joués
+  if (quantity === '') {
+    document.getElementById("quantity-error-message").innerHTML = "Vous devez saisir une valeur numérique.";
+    return false;
+  } else {
+    document.getElementById("quantity-error-message").innerHTML = "";
 
   }
+
+  // 6/ Vérification du nombre de case cochée minimum pour la location
+  let locationChecked = false;
+  for (let i = 0; i < location.length; i++) {
+    if (location[i].checked) {
+      locationChecked = true;
+      break;
+    }
+  }
+  if (!locationChecked) {
+    document.getElementById("location-error-message").innerHTML = "Vous devez choisir une option.";
+    return false;
+  } else {
+    document.getElementById("location-error-message").innerHTML = "";
+  }
+
+  // 7/ Vérification que la case conditions est checkée
+  if (!conditions) {
+    document.getElementById("conditions-error-message").innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
+    return false;
+  } else {
+    document.getElementById("conditions-error-message").innerHTML = "";
+  }
+
+  //    alert("Merci ! Votre réservation a été reçue.");
+ document.querySelector(".modal-body").innerHTML = "Merci ! Votre réservation a été reçue.";
+
+// setTimeout(function() {
+//  history.go(0)
+//  }, 3000); 
+
+}
