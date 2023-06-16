@@ -24,7 +24,7 @@ function editNav() {
 // la div qui contient le formulaire d'inscription
 const modalbg = document.querySelector(".bground");
 
-
+const modalBody = document.querySelector(".modal-body");
 
 //Création d'une constante modalBtn
 //correspond au bouton je m'inscris
@@ -50,17 +50,28 @@ const closeModalBtn = document.querySelectorAll(".close");
 // close modal event
 closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModal));
 
-let form = document.forms.reserve;
-let modalBody = document.querySelector(".modal-body");
+//let form = document.forms.reserve;
+//let modalBody = document.querySelector(".modal-body");
 
+//
+let closeButton = document.querySelector(".close-button");
+closeButton.remove();
+
+let submitButton = document.querySelector(".btn-submit");
+let formulaire = document.querySelector("#reserve");
 //Fonction closeModal
 //display du div contenant le form à 
 function closeModal() {
   modalbg.style.display = "none";
-  modalBody.appendChild("reserve");
+  modalBody.innerHTML = "";
+  formulaire.reset();
+  modalBody.appendChild(formulaire);
 }
 
-function validate(event) {
+
+
+function validate() {
+  let form = document.forms.reserve;
   let first = form.elements.first.value;
   let last = form.elements.last.value;
   let email = form.elements.email.value;
@@ -135,10 +146,61 @@ function validate(event) {
   }
 
   //    alert("Merci ! Votre réservation a été reçue.");
- document.querySelector(".modal-body").innerHTML = "Merci ! Votre réservation a été reçue.";
+  /*let messageConfirmation = document.querySelector(".confirmation-message");
+  messageConfirmation.innerHTML ="top";
+  
+  
+  let redButtonClose = document.querySelector(".btn-submit");
+  redButtonClose.value ="haha";
+  
+  modalBody.appendChild(messageConfirmation);
+  modalBody.appendChild(redButtonClose);*/
+  closeButton.addEventListener("click", closeModal);
+  modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
+  modalBody.appendChild(closeButton);
 
-// setTimeout(function() {
-//  history.go(0)
-//  }, 3000); 
+
+
+
+
+
+
+
+
+
+
+
+
+  //modalBody.appendChild(submitButton);
+  //submitButton.value = " cool ";
+
+
+  //let submitButton = document.querySelector(".btn-submit");
+  //modalBody.appendChild(submitButton);
+
+
+
+
+
+
+
+
+
+ 
+  //let formDataList = document.querySelectorAll(".formData");
+  //formDataList.forEach ((formData)) => {
+  //  formData.innerHTML ="cocotte";
+  //}
+  //document.querySelector(".confirmation-message") ="Merci ! Votre réservation a été reçue.";
+   //document.querySelector(".btn-submit").value ="Fermer";
+  //let submitButton = document / querySelector("");
+  //let formDataList = document.querySelectorAll(".formData");
+  //formDataList.forEach((formData) => {
+  //  formData.innerHTML = "";
+  //});
+
+  // setTimeout(function() {
+  //  history.go(0)
+  //  }, 3000); 
 
 }
