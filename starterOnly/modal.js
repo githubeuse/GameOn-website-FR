@@ -158,6 +158,7 @@ function validate() {
 
   //modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
   modalBody.innerHTML = "";
+  modalBody.style.marginTop = "200px";
 
   let confirmationMessage = document.querySelector(".confirmation-message");  
   confirmationMessage.innerHTML = "Merci ! Votre réservation a été reçue.";
@@ -165,6 +166,7 @@ function validate() {
 
   modalBody.appendChild(closeButton);
   closeButton.addEventListener("click", closeModal);
+  closeButton.style.marginTop = "200px";
 
 
 
