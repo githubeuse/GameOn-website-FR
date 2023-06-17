@@ -155,9 +155,17 @@ function validate() {
   
   modalBody.appendChild(messageConfirmation);
   modalBody.appendChild(redButtonClose);*/
-  closeButton.addEventListener("click", closeModal);
-  modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
+
+  //modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
+  modalBody.innerHTML = "";
+
+  let confirmationMessage = document.querySelector(".confirmation-message");  
+  confirmationMessage.innerHTML = "Merci ! Votre réservation a été reçue.";
+  modalBody.appendChild(confirmationMessage);
+
   modalBody.appendChild(closeButton);
+  closeButton.addEventListener("click", closeModal);
+
 
 
 
