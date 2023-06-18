@@ -1,20 +1,20 @@
 // Création de la fonction editNav
 function editNav() {
-  //Création d'une variable x 
-  //qui correspond à l'id myTopnav soit la barre haute de l'entête
-  var x = document.getElementById("myTopnav");
+    //Création d'une variable x
+    //qui correspond à l'id myTopnav soit la barre haute de l'entête
+    var x = document.getElementById("myTopnav");
 
-  //Si la propriété className de cet élément 
-  //correspond en valeur et en nature à topnav
-  if (x.className === "topnav") {
+    //Si la propriété className de cet élément
+    //correspond en valeur et en nature à topnav
+    if (x.className === "topnav") {
 
-    //alors ajouter responsive au nom de la classe
-    x.className += " responsive";
+        //alors ajouter responsive au nom de la classe
+        x.className += " responsive";
 
-    //sinon, 
-  } else {
-    x.className = "topnav";
-  }
+        //sinon,
+    } else {
+        x.className = "topnav";
+    }
 }
 
 // DOM Elements
@@ -23,6 +23,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 
 const modalBody = document.querySelector(".modal-body");
+const formulaire = document.querySelector("#reserve");
 
 //Création d'une constante modalBtn correspond au bouton je m'inscris
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -32,131 +33,133 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 //Fonction launchModal display du div contenant le form à block
 function launchModal() {
-  modalbg.style.display = "block";
+    modalbg.style.display = "block";
 }
+
 //Création d'une constante closeButton correspond à la croix dessinée dans le css
 const closeModalBtn = document.querySelectorAll(".close");
 
 //Ajout de la méthode forEach sur l'élément closeModalBtn
 //Pour chaque click sur le close, on lance la fonction closeModal
 // close modal event
-closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModal));
+closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", function () {
+    closeModal(false) // on ne ferme pas le formulaire car il n' a pas été validé
+}));
 
-//let form = document.forms.reserve;
-//let modalBody = document.querySelector(".modal-body");
 
 // Création variable : submitButton
 let submitButton = document.querySelector(".btn-submit");
-
-//Création variable : form
-let formulaire = document.querySelector("#reserve");
 
 //Création variable closeButton : sélectionne le bouton fermer après la validation du form
 let closeButton = document.querySelector(".close-button");
 closeButton.remove();
 
 //Fonction closeModal 
-function closeModal() {
-  modalbg.style.display = "none";
-  modalBody.innerHTML = "";
-  formulaire.reset();
-  modalBody.appendChild(formulaire);
-  modalBody.style.marginTop = "0";
+function closeModal(reset) {
+    modalbg.style.display = "none";
+    modalBody.innerHTML = "";
+    // on ne vide le formulaire que 'il est valide
+    if (reset) {
+        formulaire.reset();
+    }
+    modalBody.appendChild(formulaire);
+    modalBody.style.marginTop = "0";
 }
 
 
 //Fonction lors du clic du bouton je m'inscris dans le form
 function validate() {
-  let form = document.forms.reserve;
-  let first = form.elements.first.value;
-  let last = form.elements.last.value;
-  let email = form.elements.email.value;
-  let birthdate = form.elements.birthdate.value;
-  let quantity = form.elements.quantity.value;
-  let location = form.elements.location;
-  let conditions = form.elements.conditions.checked;
+    let form = document.forms.reserve;
+    let first = form.elements.first.value;
+    let last = form.elements.last.value;
+    let email = form.elements.email.value;
+    let birthdate = form.elements.birthdate.value;
+    let quantity = form.elements.quantity.value;
+    let location = form.elements.location;
+    let conditions = form.elements.conditions.checked;
 
 
-  // 1/ Vérification de la longueur minimale du nom entré de l'input first / prénom
-  if (first.length < 2) {
-    document.getElementById("first-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom";
-    return false;
-  } else {
-    document.getElementById("first-error-message").innerHTML = "";
-  }
-
-  // 2/ Vérification de la longueur minimale du nom entré de l'input last / prénom
-  if (last.length < 2) {
-    document.getElementById("last-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    return false;
-  } else {
-    document.getElementById("last-error-message").innerHTML = "";
-  }
-
-  // 3/ Vérification de l'email 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    document.getElementById("email-error-message").innerHTML = "Veuillez entrer un email valide.";
-    return false;
-  } else {
-    document.getElementById("email-error-message").innerHTML = "";
-  }
-
-  // 4/ Vérification du champs birthdate 
-  if (isNaN(Date.parse(birthdate))) {
-    document.getElementById("birthdate-error-message").innerHTML = "Vous devez entrer votre date de naissance.";
-    return false;
-  } else {
-    document.getElementById("birthdate-error-message").innerHTML = "";
-  }
-
-  // 5/ Vérification de la quantité de tournois joués
-  if (quantity === '') {
-    document.getElementById("quantity-error-message").innerHTML = "Vous devez saisir une valeur numérique.";
-    return false;
-  } else {
-    document.getElementById("quantity-error-message").innerHTML = "";
-
-  }
-
-  // 6/ Vérification du nombre de case cochée minimum pour la location
-  let locationChecked = false;
-  for (let i = 0; i < location.length; i++) {
-    if (location[i].checked) {
-      locationChecked = true;
-      break; 
+    // 1/ Vérification de la longueur minimale du nom entré de l'input first / prénom
+    if (first.length < 2) {
+        document.getElementById("first-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom";
+        return false;
+    } else {
+        document.getElementById("first-error-message").innerHTML = "";
     }
-  }
-  if (!locationChecked) {
-    document.getElementById("location-error-message").innerHTML = "Vous devez choisir une option.";
-    return false;
-  } else {
-    document.getElementById("location-error-message").innerHTML = "";
-  }
 
-  // 7/ Vérification que la case conditions est checkée
-  if (!conditions) {
-    document.getElementById("conditions-error-message").innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
-    return false;
-  } else {
-    document.getElementById("conditions-error-message").innerHTML = "";
-  }
+    // 2/ Vérification de la longueur minimale du nom entré de l'input last / prénom
+    if (last.length < 2) {
+        document.getElementById("last-error-message").innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+        return false;
+    } else {
+        document.getElementById("last-error-message").innerHTML = "";
+    }
+
+    // 3/ Vérification de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        document.getElementById("email-error-message").innerHTML = "Veuillez entrer un email valide.";
+        return false;
+    } else {
+        document.getElementById("email-error-message").innerHTML = "";
+    }
+
+    // 4/ Vérification du champs birthdate
+    if (isNaN(Date.parse(birthdate))) {
+        document.getElementById("birthdate-error-message").innerHTML = "Vous devez entrer votre date de naissance.";
+        return false;
+    } else {
+        document.getElementById("birthdate-error-message").innerHTML = "";
+    }
+
+    // 5/ Vérification de la quantité de tournois joués
+    if (quantity === '') {
+        document.getElementById("quantity-error-message").innerHTML = "Vous devez saisir une valeur numérique.";
+        return false;
+    } else {
+        document.getElementById("quantity-error-message").innerHTML = "";
+
+    }
+
+    // 6/ Vérification du nombre de case cochée minimum pour la location
+    let locationChecked = false;
+    for (let i = 0; i < location.length; i++) {
+        if (location[i].checked) {
+            locationChecked = true;
+            break;
+        }
+    }
+    if (!locationChecked) {
+        document.getElementById("location-error-message").innerHTML = "Vous devez choisir une option.";
+        return false;
+    } else {
+        document.getElementById("location-error-message").innerHTML = "";
+    }
+
+    // 7/ Vérification que la case conditions est checkée
+    if (!conditions) {
+        document.getElementById("conditions-error-message").innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
+        return false;
+    } else {
+        document.getElementById("conditions-error-message").innerHTML = "";
+    }
 
 
-
-  //modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
-  modalBody.innerHTML = "";
-  modalBody.style.marginTop = "200px";
-
-
-  let confirmationMessage = document.querySelector("#confirmation-message");  
-  modalBody.appendChild(confirmationMessage);
-  confirmationMessage.innerText = "Merci ! Votre réservation a été reçue.";
+    //modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
+    modalBody.innerHTML = "";
+    modalBody.style.marginTop = "200px";
 
 
-  modalBody.appendChild(closeButton);
-  closeButton.addEventListener("click", closeModal);
-  closeButton.style.marginTop = "200px";
-  return true;
+    let confirmationMessage = document.querySelector("#confirmation-message");
+    modalBody.appendChild(confirmationMessage);
+    confirmationMessage.innerText = "Merci ! Votre réservation a été reçue.";
+
+
+    modalBody.appendChild(closeButton);
+    closeButton.addEventListener("click", function () {
+        closeModal(true) // on passe true pour vider le formulaire car il est valide
+    });
+    closeButton.style.marginTop = "200px";
+    return true;
 
 }
