@@ -58,7 +58,7 @@
         <img src="./bg_img.jpg" alt="img" />
       </div>
       <!--Bouton d'inscription : ouvre le formulaire d'inscription via une fenêtre modale-->
-      <button class="btn-signup modal-btn">
+        <button class="btn-signup modal-btn">
         je m'inscris
       </button>
     </div>
@@ -66,12 +66,11 @@
     <div class="bground">
       <div class="content">
         <span class="close"></span>
-        <span class="confirmation-message"></span>
+        <span id="confirmation-message"></span>
         <!--Formulaire d'inscription-->
         <div class="modal-body">
 
           <form name="reserve" id="reserve" action="index.html" method="get" onsubmit="return validate();">
-            <span id="message-confirmation"></span>
             <!--1/ PRENOM-->
             <div class="formData">
               <label for="first">Prénom</label><br>

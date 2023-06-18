@@ -19,33 +19,25 @@ function editNav() {
 
 // DOM Elements
 
-// Création d'une constante modalbg
-// correspond à bground
-// la div qui contient le formulaire d'inscription
+// Création d'une constante modalbg correspond à bground la div qui contient le formulaire d'inscription
 const modalbg = document.querySelector(".bground");
 
 const modalBody = document.querySelector(".modal-body");
 
-//Création d'une constante modalBtn
-//correspond au bouton je m'inscris
+//Création d'une constante modalBtn correspond au bouton je m'inscris
 const modalBtn = document.querySelectorAll(".modal-btn");
 
-//Ajout de de la méthode forEach sur le bouton je m'inscris
-//Pour chaque click sur le btn, on lance la fonction launchModal
-// launch modal event
+//Ajout de de la méthode forEach sur le bouton je m'inscris, pour chaque click sur le btn, on lance la fonction launchModal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-//Fonction launchModal
-//display du div contenant le form à block
-// launch modal form
+//Fonction launchModal display du div contenant le form à block
 function launchModal() {
   modalbg.style.display = "block";
 }
-//Création d'une constante closeButton
-//correspond à la croix dessinée dans le css
+//Création d'une constante closeButton correspond à la croix dessinée dans le css
 const closeModalBtn = document.querySelectorAll(".close");
 
-//Ajout de la méthode forEach sur l'élément close
+//Ajout de la méthode forEach sur l'élément closeModalBtn
 //Pour chaque click sur le close, on lance la fonction closeModal
 // close modal event
 closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModal));
@@ -53,23 +45,27 @@ closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", closeModa
 //let form = document.forms.reserve;
 //let modalBody = document.querySelector(".modal-body");
 
-//
+// Création variable : submitButton
+let submitButton = document.querySelector(".btn-submit");
+
+//Création variable : form
+let formulaire = document.querySelector("#reserve");
+
+//Création variable closeButton : sélectionne le bouton fermer après la validation du form
 let closeButton = document.querySelector(".close-button");
 closeButton.remove();
 
-let submitButton = document.querySelector(".btn-submit");
-let formulaire = document.querySelector("#reserve");
-//Fonction closeModal
-//display du div contenant le form à 
+//Fonction closeModal 
 function closeModal() {
   modalbg.style.display = "none";
   modalBody.innerHTML = "";
   formulaire.reset();
   modalBody.appendChild(formulaire);
+  modalBody.style.marginTop = "0";
 }
 
 
-
+//Fonction lors du clic du bouton je m'inscris dans le form
 function validate() {
   let form = document.forms.reserve;
   let first = form.elements.first.value;
@@ -79,6 +75,7 @@ function validate() {
   let quantity = form.elements.quantity.value;
   let location = form.elements.location;
   let conditions = form.elements.conditions.checked;
+
 
   // 1/ Vérification de la longueur minimale du nom entré de l'input first / prénom
   if (first.length < 2) {
@@ -127,7 +124,7 @@ function validate() {
   for (let i = 0; i < location.length; i++) {
     if (location[i].checked) {
       locationChecked = true;
-      break;
+      break; 
     }
   }
   if (!locationChecked) {
@@ -145,72 +142,21 @@ function validate() {
     document.getElementById("conditions-error-message").innerHTML = "";
   }
 
-  //    alert("Merci ! Votre réservation a été reçue.");
-  /*let messageConfirmation = document.querySelector(".confirmation-message");
-  messageConfirmation.innerHTML ="top";
-  
-  
-  let redButtonClose = document.querySelector(".btn-submit");
-  redButtonClose.value ="haha";
-  
-  modalBody.appendChild(messageConfirmation);
-  modalBody.appendChild(redButtonClose);*/
+
 
   //modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
   modalBody.innerHTML = "";
   modalBody.style.marginTop = "200px";
 
-  let confirmationMessage = document.querySelector(".confirmation-message");  
-  confirmationMessage.innerHTML = "Merci ! Votre réservation a été reçue.";
+
+  let confirmationMessage = document.querySelector("#confirmation-message");  
   modalBody.appendChild(confirmationMessage);
+  confirmationMessage.innerText = "Merci ! Votre réservation a été reçue.";
+
 
   modalBody.appendChild(closeButton);
   closeButton.addEventListener("click", closeModal);
   closeButton.style.marginTop = "200px";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //modalBody.appendChild(submitButton);
-  //submitButton.value = " cool ";
-
-
-  //let submitButton = document.querySelector(".btn-submit");
-  //modalBody.appendChild(submitButton);
-
-
-
-
-
-
-
-
-
- 
-  //let formDataList = document.querySelectorAll(".formData");
-  //formDataList.forEach ((formData)) => {
-  //  formData.innerHTML ="cocotte";
-  //}
-  //document.querySelector(".confirmation-message") ="Merci ! Votre réservation a été reçue.";
-   //document.querySelector(".btn-submit").value ="Fermer";
-  //let submitButton = document / querySelector("");
-  //let formDataList = document.querySelectorAll(".formData");
-  //formDataList.forEach((formData) => {
-  //  formData.innerHTML = "";
-  //});
-
-  // setTimeout(function() {
-  //  history.go(0)
-  //  }, 3000); 
+  return true;
 
 }
