@@ -22,11 +22,24 @@ function editNav() {
 // Création d'une constante modalbg correspond à bground la div qui contient le formulaire d'inscription
 const modalbg = document.querySelector(".bground");
 
+// Création d'une constante modalBody correspond à la div avec classe modal-body contenu dans bground
 const modalBody = document.querySelector(".modal-body");
+
+// Création d'une constante formulaire correspond au form
 const formulaire = document.querySelector("#reserve");
+
+//Création d'une variable ayant pour id confirmation-message
+let confirmationMessage = document.querySelector("#confirmation-message");
 
 //Création d'une constante modalBtn correspond au bouton je m'inscris
 const modalBtn = document.querySelectorAll(".modal-btn");
+
+// Création variable : submitButton
+let submitButton = document.querySelector(".btn-submit");
+
+
+
+//Ouverture de la modale 
 
 //Ajout de de la méthode forEach sur le bouton je m'inscris, pour chaque click sur le btn, on lance la fonction launchModal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -36,38 +49,45 @@ function launchModal() {
     modalbg.style.display = "block";
 }
 
+//Fermeture de la modale 
+
 //Création d'une constante closeButton correspond à la croix dessinée dans le css
 const closeModalBtn = document.querySelectorAll(".close");
 
-//Ajout de la méthode forEach sur l'élément closeModalBtn
-//Pour chaque click sur le close, on lance la fonction closeModal
-// close modal event
+//Ajout de la méthode forEach sur l'élément closeModalBtn pour chaque click sur le close, on lance la fonction anonyme : closeModal passe à false
 closeModalBtn.forEach((closeBtn) => closeBtn.addEventListener("click", function () {
     closeModal(false) // on ne ferme pas le formulaire car il n' a pas été validé
 }));
 
-
-// Création variable : submitButton
-let submitButton = document.querySelector(".btn-submit");
-
 //Création variable closeButton : sélectionne le bouton fermer après la validation du form
 let closeButton = document.querySelector(".close-button");
+
+// Retire le bouton fermer du formulaire
 closeButton.remove();
 
-//Fonction closeModal 
+//Fonction closeModal avec le paramètre reset
 function closeModal(reset) {
+    //passage du display block à none
     modalbg.style.display = "none";
+
+    //On vide le modal body
     modalBody.innerHTML = "";
-    // on ne vide le formulaire que 'il est valide
+
+    
+    // on ne vide le formulaire que s'il est valide
     if (reset) {
         formulaire.reset();
     }
+
+    //On ajoute à la modalBody le formulaire
     modalBody.appendChild(formulaire);
+
+    //On donne une marginTop de 0 à la modalBody
     modalBody.style.marginTop = "0";
 }
 
 
-//Fonction lors du clic du bouton je m'inscris dans le form
+//Fonction validate appelée lors du clic du bouton je m'inscris dans le form
 function validate() {
     let form = document.forms.reserve;
     let first = form.elements.first.value;
@@ -144,22 +164,33 @@ function validate() {
         document.getElementById("conditions-error-message").innerHTML = "";
     }
 
+    // Le formulaire est valide
+    //Création du message de confirmation
 
-    //modalBody.innerHTML = "Merci ! Votre réservation a été reçue.";
+    // On vide modalBody
     modalBody.innerHTML = "";
+
+    //On lui ajoute un margin-top de 200px
     modalBody.style.marginTop = "200px";
 
-
-    let confirmationMessage = document.querySelector("#confirmation-message");
+    //On ajoute au modalBody le message de confirmation
     modalBody.appendChild(confirmationMessage);
+
+    //On modifie le contenu de conformationMessage
     confirmationMessage.innerText = "Merci ! Votre réservation a été reçue.";
 
-
+    //On ajoute au modalBody le bouton fermer
     modalBody.appendChild(closeButton);
+
+    // Lorsqu'on clique sur ce bouton, on fait passer closeModal à true, ce qui videra le formulaire
     closeButton.addEventListener("click", function () {
-        closeModal(true) // on passe true pour vider le formulaire car il est valide
+        closeModal(true)
     });
+
+    //On ajoute au bouton fermer une marginTop de 200px
     closeButton.style.marginTop = "200px";
+
+    //On retourne true pour le formulaire
     return true;
 
 }
