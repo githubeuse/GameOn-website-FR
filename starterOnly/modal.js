@@ -89,14 +89,13 @@ function closeModal(reset) {
 
 //Fonction validate appelée lors du clic du bouton je m'inscris dans le form
 function validate() {
-    let form = document.forms.reserve;
-    let first = form.elements.first.value;
-    let last = form.elements.last.value;
-    let email = form.elements.email.value;
-    let birthdate = form.elements.birthdate.value;
-    let quantity = form.elements.quantity.value;
-    let location = form.elements.location;
-    let conditions = form.elements.conditions.checked;
+    let first = formulaire.elements.first.value;
+    let last = formulaire.elements.last.value;
+    let email = formulaire.elements.email.value;
+    let birthdate = formulaire.elements.birthdate.value;
+    let quantity = formulaire.elements.quantity.value;
+    let location = formulaire.elements.location;
+    let conditions = formulaire.elements.conditions.checked;
 
 
     // 1/ Vérification de la longueur minimale du nom entré de l'input first / prénom
