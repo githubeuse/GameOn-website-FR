@@ -34,11 +34,6 @@ let confirmationMessage = document.querySelector("#confirmation-message");
 //Création d'une constante modalBtn correspond au bouton je m'inscris
 const modalBtn = document.querySelectorAll(".modal-btn");
 
-// Création variable : submitButton
-let submitButton = document.querySelector(".btn-submit");
-
-
-
 //Ouverture de la modale 
 
 //Ajout de de la méthode forEach sur le bouton je m'inscris, pour chaque click sur le btn, on lance la fonction launchModal
